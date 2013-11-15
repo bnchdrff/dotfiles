@@ -123,6 +123,14 @@ if [ -d "$HOME/dists/git-annex.linux" ]; then
   export PATH=$PATH:$HOME/dists/git-annex.linux
 fi
 
+# android
+if [ -d "$HOME/android-sdk-linux/tools" ]; then
+  PATH=$PATH:$HOME/android-sdk-linux/tools
+fi
+if [ -d "$HOME/android-sdk-linux/platform-tools" ]; then
+  PATH=$PATH:$HOME/android-sdk-linux/platform-tools
+fi
+
 # be nice to your group
 umask 002
 
