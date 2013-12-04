@@ -131,6 +131,11 @@ if [ -d "$HOME/android-sdk-linux/platform-tools" ]; then
   PATH=$PATH:$HOME/android-sdk-linux/platform-tools
 fi
 
+# os x php5 bin
+if [ -d "/usr/local/php5/bin" ]; then
+  export PATH=/usr/local/php5/bin:$PATH
+fi
+
 # be nice to your group
 umask 002
 
