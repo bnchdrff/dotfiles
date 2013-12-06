@@ -113,6 +113,11 @@ if [ -d "$HOME/.nvm" ]; then
   . $HOME/.nvm/nvm.sh
 fi
 
+# sometimes this is necessary!
+if [ -d "/usr/local/bin" ]; then
+  export PATH=$PATH:/usr/local/bin
+fi
+
 # ruby gem bin
 if [ -d "/var/lib/gems/1.8/bin" ]; then
   export PATH=$PATH:/var/lib/gems/1.8/bin
