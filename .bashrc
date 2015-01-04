@@ -147,3 +147,4 @@ umask 002
 # this file is now in dfm.. yay!
 
 . $HOME/.bashrc.load
+export PATH="$PATH:~/.composer/vendor/bin"
