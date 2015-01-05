@@ -147,3 +147,15 @@ umask 002
 # this file is now in dfm.. yay!
 
 . $HOME/.bashrc.load
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# php xdebug
+export XDEBUG_CONFIG="remote_enable=1"
+
+export PATH="$PATH:~/.composer/vendor/bin"
+PLATFORMSH_CONF=~/.composer/vendor/platformsh/cli/platform.rc
+[ -f "$PLATFORMSH_CONF" ] && . "$PLATFORMSH_CONF"
