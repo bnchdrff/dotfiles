@@ -1,0 +1,42 @@
+[general]
+ui = TTY.TTYUI
+accounts = anonyben
+pythonfile=~/.mutt/offlineimap.py
+fsync = False
+
+[Account anonyben]
+localrepository = anonyben-local
+remoterepository = anonyben-remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository anonyben-local]
+type = Maildir
+localfolders = ~/.mail/anonyben-gmail.com
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository anonyben-remote]
+maxconnections = 1
+type = Gmail
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = anonyben@gmail.com
+remotepasseval = get_authinfo_password(machine="imap.gmail.com", login="anonyben@gmail.com", port="993")
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             'Nagios',
+                                             'Django',
+                                             'Flask',
+                                             '[Gmail]/Important',
+                                             '[Gmail]/Spam',
+                                             ]
