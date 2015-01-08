@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/vim-coffee-script"]
 	path = .vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "entrails/mutt-notmuch-py"]
+	path = entrails/mutt-notmuch-py
+	url = git@github.com:honza/mutt-notmuch-py.git

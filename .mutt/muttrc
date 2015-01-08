@@ -39,9 +39,11 @@ alternates bc@detriot.org
 
 # Mailboxes to show in the sidebar.
 mailboxes +anonyben-gmail.com/INBOX \
+          +anonyben-gmail.com/WD-PM \
           +anonyben-gmail.com/archive \
           +anonyben-gmail.com/sent \
           +anonyben-gmail.com/drafts \
+          +temporary/search \
 
 # Other special folders.
 set mbox      = "+anonyben-gmail.com/archive"
@@ -76,5 +78,7 @@ macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 bind index,pager <down>   sidebar-next
 bind index,pager <up>     sidebar-prev
 bind index,pager <right>  sidebar-open
+
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
 
 
