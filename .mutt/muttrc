@@ -37,6 +37,14 @@ set spoolfile = "+anonyben-gmail.com/INBOX"
 
 alternates bc@detriot.org
 
+set from = "anonyben@gmail.com"
+set realname = "Benjamin Chodoroff"
+set smtp_url = "smtp://anonyben@smtp.gmail.com:587/"
+set smtp_pass = `gpg -q --no-tty -d ~/.authinfo.gpg | awk '{print $6}'`
+unset record
+
+set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
+
 # Mailboxes to show in the sidebar.
 mailboxes +anonyben-gmail.com/INBOX \
           +anonyben-gmail.com/WD-PM \
@@ -81,4 +89,10 @@ bind index,pager <right>  sidebar-open
 
 macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
 
-
+set pgp_sign_as=0x6266A3F1 # your key
+set pgp_timeout=60
+set crypt_replysign
+set crypt_verify_sig=yes
+set crypt_autopgp=yes
+set pgp_auto_decode=yes
+source ~/.mutt/gpg.rc
