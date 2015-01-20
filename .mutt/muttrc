@@ -74,7 +74,7 @@ bind pager j  next-line
 bind pager gg top
 bind pager G  bottom
 
-bind index R        group-reply
+bind index,pager R        group-reply
 bind index <tab>    sync-mailbox
 bind index <space>  collapse-thread
 
