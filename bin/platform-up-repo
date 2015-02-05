@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# run this from a git repo within a platform project built form a project.make file
+# it'll find the project repository and replace the HEAD~1 checksup with HEAD's
+
+CWD=`pwd`
+
+find_parent_repo () {
+  if [ `pwd` == '/' ]; then
+    echo 'reached root, but no platform repo found'
+    exit 1
+  fi
+
+  if [ -d repository ]; then
+    cd repository
+    if grep --quiet '\@git\...\.platform\.sh:' .git/config; then
+      _PLATFORM_REPO=`pwd`
+    else
+      echo 'not a platform repo, exiting'
+      exit 1
+    fi
+  else
+    cd ..
+    find_parent_repo
+  fi
+}
+
+set_new_and_old_commits () {
+  cd $CWD
+  if [[ -e "$(git rev-parse --git-dir 2> /dev/null)" ]]; then
+    local HEAD_COMMIT=`git log --pretty='%H' -1`
+    local OLDER_COMMITS=`git log --pretty='%H' --skip=1`
+    find_parent_repo
+    cd $_PLATFORM_REPO
+    for OLDER_COMMIT in $OLDER_COMMITS; do
+      if grep --quiet $OLDER_COMMIT project.make; then
+        sed -i -e "s/$OLDER_COMMIT/$HEAD_COMMIT/" project.make
+        git add project.make
+        git commit project.make -m 'autobump'
+        break
+      fi
+    done
+  else
+    echo 'not in a repo'
+    exit 1
+  fi
+}
+
+
+we_are_on_repo () {
+  if [[ -e "$(git rev-parse --git-dir 2> /dev/null)" ]]; then
+    echo 1
+  fi
+  echo 0
+}
+
+find_parent_repo
+
+set_new_and_old_commits
+
+exit $?
