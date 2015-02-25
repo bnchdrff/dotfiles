@@ -48,8 +48,8 @@ set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
 # Mailboxes to show in the sidebar.
 mailboxes +anonyben-gmail.com/INBOX \
           +anonyben-gmail.com/WD\ PM \
+          +anonyben-gmail.com/sent \
 #          +anonyben-gmail.com/archive \
-#          +anonyben-gmail.com/sent \
 #          +anonyben-gmail.com/drafts \
           +temporary/search \
 
@@ -104,3 +104,5 @@ set crypt_verify_sig=yes
 set crypt_autopgp=yes
 set pgp_auto_decode=yes
 source ~/.mutt/gpg.rc
+
+set query_command="goobook query '%s'"
