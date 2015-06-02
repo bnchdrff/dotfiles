@@ -383,5 +383,7 @@ source ~/.vim/bufexplorer.vim
 let mapleader = "`"
 au Filetype html,xml source ~/.vim/scripts/wrapwithtag.vim
 
+let g:jsx_ext_required = 0
+
 "
 "       vim:tw=78 et sw=4 comments=\:\"
