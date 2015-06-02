@@ -46,3 +46,6 @@
 [submodule "entrails/mutt-notmuch-py"]
 	path = entrails/mutt-notmuch-py
 	url = git@github.com:honza/mutt-notmuch-py.git
+[submodule ".vim/bundle/vim-jsx"]
+	path = .vim/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
