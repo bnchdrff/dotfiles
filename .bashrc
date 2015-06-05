@@ -160,3 +160,5 @@ export XDEBUG_CONFIG="remote_enable=1"
 export PATH="$PATH:~/.composer/vendor/bin"
 PLATFORMSH_CONF=~/.composer/vendor/platformsh/cli/platform.rc
 [ -f "$PLATFORMSH_CONF" ] && . "$PLATFORMSH_CONF"
+
+alias curltimer='curl -w "@/home/bc/.curl_stat_format" -o /dev/null -s'
