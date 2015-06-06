@@ -385,5 +385,7 @@ au Filetype html,xml source ~/.vim/scripts/wrapwithtag.vim
 
 let g:jsx_ext_required = 0
 
+vnoremap <C-c> "*y
+
 "
 "       vim:tw=78 et sw=4 comments=\:\"
