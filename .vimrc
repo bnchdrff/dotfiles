@@ -387,5 +387,10 @@ let g:jsx_ext_required = 0
 
 vnoremap <C-c> "*y
 
+au VimEnter *.clj RainbowParenthesesToggle
+au Syntax *.clj RainbowParenthesesLoadRound
+au Syntax *.clj RainbowParenthesesLoadSquare
+au Syntax *.clj RainbowParenthesesLoadBraces
+
 "
 "       vim:tw=78 et sw=4 comments=\:\"
