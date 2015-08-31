@@ -7,9 +7,6 @@
 [submodule ".vim/bundle/vim-trailing-whitespace"]
 	path = .vim/bundle/vim-trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace.git
-[submodule ".vim/bundle/vim-dbgp"]
-	path = .vim/bundle/vim-dbgp
-	url = chili@pm.theworkdept.com:thrmtc/bc-dotfiles/vim-dbgp.git
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/tpope/vim-markdown.git
@@ -61,3 +58,6 @@
 [submodule ".vim/bundle/rainbow_parentheses.vim"]
 	path = .vim/bundle/rainbow_parentheses.vim
 	url = https://github.com/kien/rainbow_parentheses.vim
+[submodule ".vim/bundle/vdebug"]
+	path = .vim/bundle/vdebug
+	url = https://github.com/joonty/vdebug
