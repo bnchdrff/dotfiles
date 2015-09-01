@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# A script that makes a local copy of a prod Acquia db.
+#
+# * Start a backup task on an Acquia remote site,
+# * wait for it to finish,
+# * download it to a temp file,
+# * drop the existing db
+# * and load it into the current environment's database with "drush sqlc"
+
+LOCAL_DB_NAME="$1"
+REMOTE_DB_NAME="$2"
+DRUSH_ALIAS="$3"
+
+if [[ $1 = "" ]] || [[ $2 = "" ]] || [[ $3 = "" ]]
+then
+  echo "Generate a backup of an Acquia db & load it into a local db."
+  echo "Run this script from within a local codebase."
+  echo ""
+  echo "Usage:"
+  echo "$0 <local db> <remote db> <drush alias name>"
+  echo "Example:"
+  echo "$0 robbreport robbreport robbreport.prod"
+  exit 1
+fi
+
+# Start a backup & get its task id.
+TASK_OUT="$(drush @$DRUSH_ALIAS ac-database-instance-backup $REMOTE_DB_NAME 2>&1)"
+TASK_ID="$(echo $TASK_OUT | sed 's/.*Task \([0-9]*\) started.*/\1/')"
+
+echo "Started backup task with ID $TASK_ID..."
+
+# Check to see if the backup is completed.
+while [[ $TASK_STATE != "done" && $TASK_STATE != "error" ]]
+do
+  sleep 5
+  TASK_OUT="$(drush @$DRUSH_ALIAS ac-task-info $TASK_ID)"
+  TASK_STATE="$(echo $TASK_OUT | sed 's/.*state : \([a-zA-Z]*\).*/\1/')"
+
+  # Exit after n tries...
+  #((c++)) && ((c==10)) && break
+done
+
+# Error?!
+if [[ $TASK_STATE = "error" ]]
+then
+  echo "Error!"
+  exit 1
+else
+  echo "Success!"
+fi
+
+BACKUP_ID="$(drush @$DRUSH_ALIAS ac-task-info $TASK_ID | grep result | sed 's/.*"backupid":"\([0-9]*\)"}/\1/')"
+# Trim dat.
+BACKUP_ID="$(echo -e "${BACKUP_ID}" | tr -d '[[:space:]]')"
+
+echo "Downloading backup with ID $BACKUP_ID"
+
+drush @$DRUSH_ALIAS ac-database-instance-backup-download $REMOTE_DB_NAME "$BACKUP_ID" > "/tmp/${BACKUP_ID}.sql.gz"
+
+# Empty existing db.
+mysql -uroot -e "DROP DATABASE $LOCAL_DB_NAME; CREATE DATABASE $LOCAL_DB_NAME;"
+
+# Load into empty db.
+zcat /tmp/${BACKUP_ID}.sql.gz | drush sqlc
+
+exit 0
