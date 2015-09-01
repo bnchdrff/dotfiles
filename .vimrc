@@ -5,7 +5,7 @@ call pathogen#infect('~/.vim/bundle/drupalvim/bundle')
 
 " pathogen!
 call pathogen#infect()
-
+call pathogen#helptags()
 
 " Remove ALL auto-commands.  This avoids having the
 " autocommands twice when the vimrc file is sourced again.
