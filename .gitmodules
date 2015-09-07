@@ -61,3 +61,7 @@
 [submodule ".vim/bundle/vdebug"]
 	path = .vim/bundle/vdebug
 	url = https://github.com/joonty/vdebug
+[submodule "entrails/dcq"]
+	path = entrails/dcq
+	url = http://git.drupal.org/project/dcq.git
+	branch = 7.x-2.x

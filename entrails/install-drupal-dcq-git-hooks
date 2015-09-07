@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# Installs pre-commit hook in the current Git repository that will check
+# code quality for a Drupal project.
+#
+# # Installation:
+#
+# Install Drupal Coder & its phpcs integration:
+# `composer global require drupal/coder`
+#
+# If composer's bin dir isn't in your path,
+# symlink phpcs & phpcbf to global locations:
+# `sudo ln -s ~/.composer/vendor/bin/phpcs /usr/local/bin`
+# `sudo ln -s ~/.composer/vendor/bin/phpcbf /usr/local/bin`
+#
+# Register drupal stuff with PHPCS:
+# `phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer`
+#
+# Run install-drupal-pre-commit-hooks in a git repo.
+
+GIT_DIR="$(git rev-parse --git-dir)"
+
+if [ -z $GIT_DIR ]
+then
+  echo "Can't find git directory; please run command within a git repository."
+  exit 1
+fi
+
+PRE_COMMIT_FILE="$GIT_DIR/hooks/pre-commit"
+
+DCQ_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/dcq"
+
+if [ -f $PRE_COMMIT_FILE ]
+then
+  echo "pre-commit already exists; please remove it or manually patch in the config from:"
+  echo "$DCQ_DIR"
+  exit 2
+fi
+
+cp "$DCQ_DIR/pre-commit" "$GIT_DIR/hooks/pre-commit"
+cp "$DCQ_DIR/pre-commit_dcq" "$GIT_DIR/hooks/pre-commit_dcq"
+
+chmod +x "$GIT_DIR/hooks/pre-commit"
+chmod +x "$GIT_DIR/hooks/pre-commit_dcq"
