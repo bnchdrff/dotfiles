@@ -106,8 +106,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export PATH=$PATH:~/bin
-
 # nvm
 if [ -d "$HOME/.nvm" ]; then
   . $HOME/.nvm/nvm.sh
@@ -157,7 +155,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # php xdebug
 export XDEBUG_CONFIG="remote_enable=1"
 
-export PATH="$PATH:~/.composer/vendor/bin"
 PLATFORMSH_CONF=~/.composer/vendor/platformsh/cli/platform.rc
 [ -f "$PLATFORMSH_CONF" ] && . "$PLATFORMSH_CONF"
 
