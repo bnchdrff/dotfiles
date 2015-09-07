@@ -5,6 +5,11 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Add environment settings from .bash_profile
+if [ -f ~/.bash_profile ]; then
+  source ~/.bash_profile
+fi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -111,46 +116,11 @@ if [ -d "$HOME/.nvm" ]; then
   . $HOME/.nvm/nvm.sh
 fi
 
-# sometimes this is necessary!
-if [ -d "/usr/local/bin" ]; then
-  export PATH=$PATH:/usr/local/bin
-fi
-
-# ruby gem bin
-if [ -d "/var/lib/gems/1.8/bin" ]; then
-  export PATH=$PATH:/var/lib/gems/1.8/bin
-fi
-
-# git annex bin
-if [ -d "$HOME/dists/git-annex.linux" ]; then
-  export PATH=$PATH:$HOME/dists/git-annex.linux
-fi
-
-# android
-if [ -d "$HOME/android-sdk-linux/tools" ]; then
-  PATH=$PATH:$HOME/android-sdk-linux/tools
-fi
-if [ -d "$HOME/android-sdk-linux/platform-tools" ]; then
-  PATH=$PATH:$HOME/android-sdk-linux/platform-tools
-fi
-
-# os x php5 bin
-if [ -d "/usr/local/php5/bin" ]; then
-  export PATH=/usr/local/php5/bin:$PATH
-fi
-
 # be nice to your group
 umask 002
 
-# this file is now in dfm.. yay!
-
-. $HOME/.bashrc.load
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # php xdebug
 export XDEBUG_CONFIG="remote_enable=1"
