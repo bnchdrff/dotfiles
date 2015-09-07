@@ -28,7 +28,7 @@ fi
 
 PRE_COMMIT_FILE="$GIT_DIR/hooks/pre-commit"
 
-DCQ_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/dcq"
+DCQ_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../entrails/dcq"
 
 if [ -f $PRE_COMMIT_FILE ]
 then
