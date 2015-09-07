@@ -1,0 +1,54 @@
+BAD_UTTERANCES=(
+  "\<var_dump("
+  "\<print_r("
+  "\<die("
+  "\<debug("
+  "\<dpm("
+  "\<krumo("
+  "\<dpr("
+  "\<dsm("
+  "\<dd("
+  "\<ddebug_backtrace("
+  "\<dpq("
+  "\<dprint_r("
+  "\<drupal_debug("
+  "\<xdebug_break("
+  "\<dvm("
+  "\<dvr("
+  "\<kpr("
+  "\<kprint_r("
+  "\<kdevel_print_object("
+  "\<kdevel_print_object("
+  "<<<<<<<"
+  ">>>>>>>"
+  "\<console.log("
+  "\<alert("
+)
+
+while read FILE; do
+  if [[ "$FILE" =~ ^.+(php|inc|module|install|test)$ ]]
+  then
+    for PATTERN in ${BAD_UTTERANCES[@]}
+    do
+      ERRORS=$(grep "$PATTERN" $FILE >&1)
+      if [ "$ERRORS" != "" ]; then
+        if [ "$ERRORS_BUFFER" != "" ]; then
+          ERRORS_BUFFER+="\n${PATTERN} found in file: $FILE "
+        else
+          ERRORS_BUFFER="\n${PATTERN} found in file: $FILE "
+        fi
+      fi
+    done
+  fi
+done <<< $(git diff --cached --name-only)
+
+if [ "$ERRORS_BUFFER" != "" ]
+then
+  echo "Found these inappropriate patterns:"
+  echo -e $ERRORS_BUFFER
+  echo
+  echo "Aborting commit."
+  exit 1
+else
+  echo "Didn't find any inappropriate patterns."
+fi
