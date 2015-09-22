@@ -1,0 +1,4 @@
+xinput set-prop "pointer:Lite-On Tech IBM USB Travel Keyboard with Ultra Nav" "Evdev Wheel Emulation" 1
+xinput set-prop "pointer:Lite-On Tech IBM USB Travel Keyboard with Ultra Nav" "Evdev Wheel Emulation Button" 2
+xinput set-prop "pointer:Lite-On Tech IBM USB Travel Keyboard with Ultra Nav" "Evdev Wheel Emulation Timeout" 200
+xinput set-prop "pointer:Lite-On Tech IBM USB Travel Keyboard with Ultra Nav" "Evdev Wheel Emulation Axes" 6 7 4 5
