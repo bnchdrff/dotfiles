@@ -28,7 +28,8 @@ fi
 
 PRE_COMMIT_FILE="$GIT_DIR/hooks/pre-commit"
 
-DCQ_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../entrails/dcq"
+ENTRAILS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/../entrails"
+DCQ_DIR="${ENTRAILS_DIR}/dcq"
 
 if [ -f $PRE_COMMIT_FILE ]
 then
@@ -39,6 +40,8 @@ fi
 
 cp "$DCQ_DIR/pre-commit" "$GIT_DIR/hooks/pre-commit"
 cp "$DCQ_DIR/pre-commit_dcq" "$GIT_DIR/hooks/pre-commit_dcq"
+cp "$ENTRAILS_DIR/pre-commit_drupal-bad-patterns" "$GIT_DIR/hooks/pre-commit_drupal-bad-patterns"
 
 chmod +x "$GIT_DIR/hooks/pre-commit"
 chmod +x "$GIT_DIR/hooks/pre-commit_dcq"
+chmod +x "$GIT_DIR/hooks/pre-commit_drupal-bad-patterns"
