@@ -119,8 +119,7 @@ fi
 # be nice to your group
 umask 002
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/heroku/bin:~/.composer/vendor/bin/:$PATH"
 
 # php xdebug
 export XDEBUG_CONFIG="remote_enable=1"
