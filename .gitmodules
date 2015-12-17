@@ -65,3 +65,6 @@
 	path = entrails/dcq
 	url = http://git.drupal.org/project/dcq.git
 	branch = 7.x-2.x
+[submodule ".vim/bundle/vim-cjsx"]
+	path = .vim/bundle/vim-cjsx
+	url = https://github.com/mtscout6/vim-cjsx.git
