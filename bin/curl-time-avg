@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+totalTime=0
+totalCount=0
+minTime=10
+maxTime=0
+url="$1"
+bustCache="$2"
+
+while true;
+do
+  # cache bust?
+  if [ -n "$bustCache" ]; then
+    randoJibberish=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+    randoGet="?$randoJibberish=$randoJibberish"
+  else
+    randoGet=""
+  fi
+  thisUrl="$url$randoGet"
+
+  echo
+  echo "Requesting $thisUrl..."
+  echo "Run #$totalCount"
+  thisTime=$(curl -o /dev/null -s -w %{time_total} "$thisUrl")
+  totalTime=$(echo "$totalTime+$thisTime" | bc)
+  totalCount=$(($totalCount+1))
+  averageTime=$(echo "scale=3;$totalTime/$totalCount" | bc)
+  minTest=$(echo "$thisTime<$minTime" | bc)
+  maxTest=$(echo "$thisTime>$maxTime" | bc)
+  if [[ $minTest -eq 1 ]]; then
+    minTime=$thisTime
+  fi
+  if [[ $maxTest -eq 1 ]]; then
+    maxTime=$thisTime
+  fi
+  echo 'Cur ' $thisTime
+  echo 'Min ' $minTime
+  echo 'Avg ' $averageTime
+  echo 'Max ' $maxTime
+  sleep 2
+done
