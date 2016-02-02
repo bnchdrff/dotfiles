@@ -132,3 +132,6 @@ alias curltimer='curl -w "@/home/bc/.curl_stat_format" -o /dev/null -s'
 # To make composer run faster, disable xdebug via config but enable it for `php`
 alias php='php -dzend_extension=xdebug.so'
 alias phpunit='php $(which phpunit)'
+
+shopt -s globstar
+
