@@ -116,6 +116,19 @@ if [ -d "$HOME/.nvm" ]; then
   . $HOME/.nvm/nvm.sh
 fi
 
+# android
+if [ -d "/opt/android-studio/bin" ]; then
+  export PATH="/opt/android-studio/bin:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk/tools" ]; then
+  export PATH="$HOME/Android/Sdk/tools:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk/platform-tools" ]; then
+  export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+fi
+
 # be nice to your group
 umask 002
 
@@ -135,3 +148,6 @@ alias phpunit='php $(which phpunit)'
 
 shopt -s globstar
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
