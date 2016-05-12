@@ -392,5 +392,8 @@ au Syntax *.clj RainbowParenthesesLoadRound
 au Syntax *.clj RainbowParenthesesLoadSquare
 au Syntax *.clj RainbowParenthesesLoadBraces
 
+"for twig
+au BufRead,BufNewFile *.twig set ft=htmljinja
+
 "
 "       vim:tw=78 et sw=4 comments=\:\"

@@ -68,3 +68,6 @@
 [submodule ".vim/bundle/yajs"]
 	path = .vim/bundle/yajs
 	url = https://github.com/othree/yajs.vim
+[submodule ".vim/bundle/twig"]
+	path = .vim/bundle/twig
+	url = git://github.com/mitsuhiko/vim-jinja.git
