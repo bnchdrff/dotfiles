@@ -123,10 +123,16 @@ fi
 
 if [ -d "$HOME/Android/Sdk/tools" ]; then
   export PATH="$HOME/Android/Sdk/tools:$PATH"
+  export ANDROID_HOME=$HOME/Android/Sdk
 fi
 
 if [ -d "$HOME/Android/Sdk/platform-tools" ]; then
   export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+fi
+
+if [ -d "/opt/android-ndk" ]; then
+  export PATH="/opt/android-ndk:$PATH"
+  export ANDROID_NDK=/opt/android-ndk
 fi
 
 # be nice to your group
@@ -149,5 +155,4 @@ alias phpunit='php $(which phpunit)'
 shopt -s globstar
 
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export EDITOR=`which vim`
