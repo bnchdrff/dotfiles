@@ -71,3 +71,6 @@
 [submodule ".vim/bundle/twig"]
 	path = .vim/bundle/twig
 	url = git://github.com/mitsuhiko/vim-jinja.git
+[submodule ".vim/bundle/vim-elixir"]
+	path = .vim/bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
