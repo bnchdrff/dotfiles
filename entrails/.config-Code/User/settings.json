@@ -1,0 +1,10 @@
+{
+  "editor.fontFamily": "Consolas",
+  "editor.tabSize": 2,
+  "editor.wrappingColumn": 0,
+  "editor.suggestOnTriggerCharacters": true,
+  "files.associations": {
+    "*.inc": "php",
+    "*.module": "php"
+  }
+}
