@@ -11,7 +11,7 @@ call pathogen#helptags()
 " autocommands twice when the vimrc file is sourced again.
 autocmd!
 filetype on
-"filetype plugin on
+filetype plugin on
 syntax on
 
 "==============
@@ -307,7 +307,7 @@ nmap ,ci :w<CR>:!indent %<CR>:e!<CR>
   map <F4> iD_RETURN(3, <ESC>$i)<ESC>
 " Buffer commands (split,move,delete) -
 " this makes a little more easy to deal with buffers.
-  map <F5>  :split<C-M>
+""  map <F5>  :split<C-M>
   map <F6>  :bp<C-M>
   map <F7>  :bn<C-M>
   map <F8> :bd<C-M>
@@ -354,6 +354,12 @@ augroup ejs
     autocmd BUfread *.ejs set ft=html
 augroup END
 
+augroup apex
+    au!
+    autocmd BufRead *.cls set ft=apexcode shiftwidth=4 tabstop=4
+    autocmd BufRead *.trigger set ft=apexcode shiftwidth=4 tabstop=4
+augroup END
+
 "
 " ===================================================================
 " TEMPORARY STUFF - TESTING THINGS
@@ -394,6 +400,13 @@ au Syntax *.clj RainbowParenthesesLoadBraces
 
 "for twig
 au BufRead,BufNewFile *.twig set ft=htmljinja
+
+"Force.com
+let g:apex_backup_folder="/home/bc/apex/backup"
+let g:apex_temp_folder="/home/bc/apex/tmp"
+let g:apex_properties_folder="/home/bc/apex/properties"
+let g:apex_tooling_force_dot_com_path="/home/bc/.dotfiles/entrails/tooling-force.com-0.3.8.0.jar"
+let g:apex_API_version="39.0"
 
 "
 "       vim:tw=78 et sw=4 comments=\:\"
