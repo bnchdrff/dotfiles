@@ -24,7 +24,7 @@ set autowrite
 set nobackup
 "set backupdir=~/.vim/backups
 set background=dark
-set clipboard=autoselect
+set clipboard=unnamedplus
 set nocompatible
 set complete=.,b,u,w,t,i " buffers used for lookup in autocompletion
 set cinoptions=>3,e0,n0,}0,^0,:2,=3,p3,t0,(3,)30,*40,+3,f0,{0,c3,u3
@@ -391,8 +391,6 @@ au Filetype html,xml source ~/.vim/scripts/wrapwithtag.vim
 
 let g:jsx_ext_required = 0
 
-vnoremap <C-c> "*y
-
 au VimEnter *.clj RainbowParenthesesToggle
 au Syntax *.clj RainbowParenthesesLoadRound
 au Syntax *.clj RainbowParenthesesLoadSquare
@@ -407,6 +405,8 @@ let g:apex_temp_folder="/home/bc/apex/tmp"
 let g:apex_properties_folder="/home/bc/apex/properties"
 let g:apex_tooling_force_dot_com_path="/home/bc/.dotfiles/entrails/tooling-force.com-0.3.8.0.jar"
 let g:apex_API_version="39.0"
+
+vnoremap <C-c> "*y
 
 "
 "       vim:tw=78 et sw=4 comments=\:\"
