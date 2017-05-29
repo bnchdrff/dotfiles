@@ -156,3 +156,6 @@ shopt -s globstar
 
 
 export EDITOR=`which vim`
+source <(gopass completion bash)
+
+alias debracketpaste='printf "\e[?2004l"'
