@@ -83,3 +83,6 @@
 [submodule ".vim/bundle/delimitMate"]
 	path = .vim/bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate
+[submodule ".vim/bundle/vim-force.com"]
+	path = .vim/bundle/vim-force.com
+	url = https://github.com/neowit/vim-force.com

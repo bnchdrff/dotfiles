@@ -1,3 +1,5 @@
+#!/bin/bash
+
 BAD_UTTERANCES=(
   "\<var_dump("
   "\<print_r("
