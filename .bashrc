@@ -130,6 +130,10 @@ if [ -d "$HOME/Android/Sdk/platform-tools" ]; then
   export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 fi
 
+if [ -d "/opt/android-sdk/platform-tools" ]; then
+  export PATH="/opt/android-sdk/platform-tools:$PATH"
+fi
+
 if [ -d "/opt/android-ndk" ]; then
   export PATH="/opt/android-ndk:$PATH"
   export ANDROID_NDK=/opt/android-ndk
